@@ -1,4 +1,4 @@
-# MyApp - Clean Architecture .NET 10
+# Clean Architecture .NET 10 and DDD
 
 ## 🚀 Description
 
