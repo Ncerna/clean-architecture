@@ -1,0 +1,31 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.dotCover
+*.pdb
+*.mdb
+*.log
+*.vs/
+*.vscode/
+
+# EF Core Migrations
+Migrations/
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# User secrets
+secrets.json
+
+# Visual Studio Code
+.vscode/
+
+# Mac
+.DS_Store

@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Api/">
+    <Project Path="Core.WebAP/Presentacion.WebAP.csproj" />
+  </Folder>
+  <Folder Name="/Core/">
+    <Project Path="Core.Application/Core.Application.csproj" />
+    <Project Path="Core.Domain/Core.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="Core.Infrastructure/Persistence.Infrastructure.csproj" />
+  </Folder>
+</Solution>
