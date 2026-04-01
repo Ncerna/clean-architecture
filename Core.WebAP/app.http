@@ -1,0 +1,9 @@
+@baseUrl = http://localhost:62151
+
+
+### 🔹 Hello test
+GET {{baseUrl}}/api/products/hello
+Accept: application/json
+
+
+

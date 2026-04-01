@@ -4,7 +4,8 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 
 using Core.Domain.Exceptions;
-using Core.Domain.Repositories;
+using Core.Application.Repositories;
+using Core.Application.Interfaces;
 
 namespace Core.Application.Features.Products.Handlers;
 
@@ -36,7 +37,7 @@ public class UpdateProductHandler
             if (product is null)
                 return Response<Guid>.Fail("Product not found");
 
-            product.Update(request.Name, request.Price, request.Stock);
+            product.Update(request.Name,request.Code, request.Price, request.Stock);
 
             await _repository.Update(product);
 

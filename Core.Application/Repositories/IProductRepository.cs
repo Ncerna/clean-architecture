@@ -1,9 +1,7 @@
 ﻿using Core.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Core.Domain.Repositories;
+
+namespace Core.Application.Repositories;
 
 public interface IProductRepository
 {

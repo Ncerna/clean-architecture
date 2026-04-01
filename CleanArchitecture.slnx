@@ -9,4 +9,7 @@
   <Folder Name="/Infrastructure/">
     <Project Path="Core.Infrastructure/Persistence.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+  </Folder>
 </Solution>

@@ -1,8 +1,8 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Core.Application.Features.Products.Commands;
+﻿using Core.Application.Features.Products.Commands;
 using Core.Application.Features.Products.Queries;
-using Core.Application.DTOs;
+using Core.Application.Wrappers;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Core.WebAP.Controllers;
 
@@ -16,15 +16,13 @@ public class ProductsController : ControllerBase
     {
         _mediator = mediator;
     }
-
+    
     [HttpGet]
-    public async Task<IActionResult> Get([FromQuery] GetProductsQueryDto dto)
+    public async Task<IActionResult> Get([FromQuery] GetProductsQuery query)
     {
-        var query = dto.ToQuery();
         var result = await _mediator.Send(query);
         return Ok(result);
     }
-
 
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id)
@@ -34,19 +32,17 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] CreateProductDto createProductDto)
+    public async Task<IActionResult> Post([FromBody] CreateProductCommand command)
     {
-        var command = createProductDto.ToCommand();
         var result = await _mediator.Send(command);
         return Ok(result);
     }
 
     [HttpPut("{id:guid}")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductDto dto)
+    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateProductCommand command)
     {
-        var command = dto.ToCommand() with { Id = id };
-        var result = await _mediator.Send(command);
+        var updatedCommand = command with { Id = id };
+        var result = await _mediator.Send(updatedCommand);
         return Ok(result);
     }
-
 }

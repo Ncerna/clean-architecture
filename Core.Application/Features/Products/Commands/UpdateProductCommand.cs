@@ -9,6 +9,7 @@ namespace Core.Application.Features.Products.Commands;
 public record UpdateProductCommand(
     Guid Id,
     string Name,
+    string Code,
     decimal Price,
     int Stock
 ) : IRequest<Response<Guid>>;

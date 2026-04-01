@@ -29,9 +29,9 @@ public class ExceptionMiddleware
         {
             await Handle(context, HttpStatusCode.Conflict, "Concurrency conflict detected.");
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            await Handle(context, HttpStatusCode.InternalServerError, "Internal server error");
+            await Handle(context, HttpStatusCode.InternalServerError, ex.ToString());
         }
     }
 

@@ -1,7 +1,8 @@
 ﻿using Core.Application.DTOs;
 using Core.Application.Features.Products.Queries;
+using Core.Application.Mappings;
 using Core.Application.Wrappers;
-using Core.Domain.Repositories;
+using Core.Application.Repositories;
 using MediatR;
 
 
@@ -11,12 +12,12 @@ public class GetProductByIdHandler
     : IRequestHandler<GetProductByIdQuery, Response<ProductDto>>
 {
     private readonly IProductRepository _repository;
-    private readonly IMapper _mapper;
+    
 
-    public GetProductByIdHandler(IProductRepository repository, IMapper mapper)
+    public GetProductByIdHandler(IProductRepository repository)
     {
         _repository = repository;
-        _mapper = mapper;
+        
     }
 
     public async Task<Response<ProductDto>> Handle(
@@ -27,8 +28,7 @@ public class GetProductByIdHandler
 
         if (product is null)
             return Response<ProductDto>.Fail("Product not found");
-
-        var data = _mapper.Map<ProductDto>(product);
+        var data = ProductMapping.ToDto(product);
 
         return Response<ProductDto>.Ok(data);
     }

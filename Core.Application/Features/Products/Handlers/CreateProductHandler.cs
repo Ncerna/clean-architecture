@@ -3,10 +3,9 @@ using Core.Application.Interfaces;
 using Core.Application.Wrappers;
 using Core.Domain.Entities;
 using Core.Domain.Exceptions;
-using Core.Domain.Repositories;
+using Core.Application.Repositories;
 using MediatR;
 using Microsoft.Extensions.Logging;
-
 
 namespace Core.Application.Features.Products.Handlers;
 
@@ -33,16 +32,14 @@ public class CreateProductHandler
     {
         try
         {
+
+            var product = Product.Create(  request.Name,  request.Code,
+                request.Price,  request.Stock
+                
+            );
             var exists = await _repository.ExistsByName(request.Name);
 
-            if (exists)
-                return Response<Guid>.Fail("Product already exists");
-
-            var product = Product.Create(
-                request.Name,
-                request.Price,
-                request.Stock
-            );
+            if (exists)  return Response<Guid>.Fail("Product already exists");
 
             await _repository.Add(product);
 
@@ -63,4 +60,4 @@ public class CreateProductHandler
         }
     }
 }
-}
+

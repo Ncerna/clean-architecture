@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MediatR;
 
 namespace Core.Domain.Events;
-public record ProductCreatedDomainEvent(Guid ProductId);
+public record ProductCreatedDomainEvent(Guid ProductId) : INotification;
